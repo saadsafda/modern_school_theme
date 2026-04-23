@@ -1,0 +1,306 @@
+<style>
+    /* Dashboard Specific Styles */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+    
+    .dashboard-hero {
+        grid-column: span 3;
+        background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%);
+        border-radius: 16px;
+        padding: 40px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dashboard-hero::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+        border-radius: 50%;
+    }
+
+    .dashboard-hero h2 {
+        font-family: "Manrope", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        color: white;
+    }
+
+    .dashboard-hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+    }
+
+    .stat-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(25, 28, 30, 0.04);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(25, 28, 30, 0.08);
+    }
+
+    .stat-card-title {
+        color: #777587;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .stat-card-value {
+        font-family: "Manrope", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #191c1e;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .dashboard-section-title {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #191c1e;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dashboard-table-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(25, 28, 30, 0.04);
+        grid-column: span 2;
+    }
+
+    .timetable-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(25, 28, 30, 0.04);
+        grid-column: span 1;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .modern-table th {
+        text-align: left;
+        padding: 12px 16px;
+        color: #777587;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        font-weight: 600;
+        border-bottom: 1px solid #f2f4f6;
+    }
+
+    .modern-table td {
+        padding: 16px;
+        color: #191c1e;
+        border-bottom: 1px solid #f2f4f6;
+        vertical-align: middle;
+    }
+
+    .modern-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .modern-table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    .modern-table tbody tr:hover {
+        background-color: #fcfcfd;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    .status-unpaid {
+        background-color: #ffdad6;
+        color: #93000a;
+    }
+
+    .status-paid {
+        background-color: #d3f9d8;
+        color: #2b8a3e;
+    }
+
+    .btn-view-all {
+        background: transparent;
+        border: 1px solid #c7c4d8;
+        color: #4f46e5;
+        border-radius: 999px;
+        padding: 6px 16px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-view-all:hover {
+        background: rgba(79, 70, 229, 0.05);
+        border-color: #4f46e5;
+    }
+
+    .timetable-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .timetable-time {
+        min-width: 70px;
+        color: #777587;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding-top: 2px;
+    }
+
+    .timetable-details {
+        border-left: 3px solid #4f46e5;
+        padding-left: 12px;
+    }
+
+    .timetable-subject {
+        font-weight: 700;
+        color: #191c1e;
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+    }
+
+    .timetable-location {
+        color: #777587;
+        font-size: 0.8rem;
+    }
+
+</style>
+
+<div class="modern-dashboard-wrapper" style="padding: 10px;">
+    
+    <div class="dashboard-grid">
+        <!-- Hero Section -->
+        <div class="dashboard-hero">
+            <div>
+                <h2>Welcome back, Administrator!</h2>
+                <p>Here is your daily overview of the institution performance.</p>
+            </div>
+            <div>
+                <!-- Decorative element or action button can go here -->
+                <button class="btn btn-default" style="background: rgba(255,255,255,0.2); border: none; color: white; font-weight: 600; border-radius: 999px; padding: 10px 24px;">View Reports</button>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stat-card">
+            <div class="stat-card-title">Total Students</div>
+            <div class="stat-card-value" id="stat-students">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-title">Active Programs</div>
+            <div class="stat-card-value" id="stat-programs">--</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-title">Total Courses</div>
+            <div class="stat-card-value" id="stat-courses">--</div>
+        </div>
+
+        <!-- Invoices Table -->
+        <div class="dashboard-table-card">
+            <div class="dashboard-section-title">
+                Recent Fee Invoices
+                <button class="btn-view-all" id="btn-view-all-fees">View All</button>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Date</th>
+                            <th>Student</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoices-table-body">
+                        <tr><td colspan="5" style="text-center; color: #777587; padding: 40px 0;">Loading invoices...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Timetable / Activity Widget -->
+        <div class="timetable-card">
+            <div class="dashboard-section-title">
+                Daily Schedule
+            </div>
+            <div class="timetable-list">
+                <div class="timetable-item">
+                    <div class="timetable-time">09:00 AM</div>
+                    <div class="timetable-details">
+                        <div class="timetable-subject">Advanced Physics</div>
+                        <div class="timetable-location">Room 101 • Grade 12</div>
+                    </div>
+                </div>
+                <div class="timetable-item">
+                    <div class="timetable-time">10:30 AM</div>
+                    <div class="timetable-details">
+                        <div class="timetable-subject">History Seminar</div>
+                        <div class="timetable-location">Library • Grade 11</div>
+                    </div>
+                </div>
+                <div class="timetable-item">
+                    <div class="timetable-time">01:00 PM</div>
+                    <div class="timetable-details">
+                        <div class="timetable-subject">Chemistry Lab</div>
+                        <div class="timetable-location">Lab 3 • Grade 10</div>
+                    </div>
+                </div>
+                <div class="timetable-item" style="opacity: 0.5;">
+                    <div class="timetable-time">03:00 PM</div>
+                    <div class="timetable-details" style="border-left-color: #c7c4d8;">
+                        <div class="timetable-subject">Faculty Meeting</div>
+                        <div class="timetable-location">Main Hall</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

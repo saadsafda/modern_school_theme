@@ -1,0 +1,202 @@
+/* Modern School Theme - SaaS Reskin for Frappe Desk */
+
+/* Base Colors & Typography */
+:root, [data-theme="light"] {
+    --primary-color: #4F46E5 !important; /* Stitch Indigo */
+    --primary-color-light: #dad7ff !important;
+    --primary-color-dark: #3525cd !important;
+    --blue-500: #4F46E5 !important;
+    
+    /* Backgrounds */
+    --body-bg: #f7f9fb !important;
+    --bg-color: #f7f9fb !important;
+    --card-bg: #ffffff !important;
+    --page-head-bg: #f7f9fb !important;
+    --navbar-bg: #ffffff !important;
+
+    /* Typography */
+    --font-stack: "Inter", "Manrope", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    --text-color: #191c1e !important;
+    --heading-text-color: #191c1e !important;
+    --text-muted: #464555 !important;
+
+    /* Borders & Shadows (Glassmorphism & Tonal Layering) */
+    --border-color: transparent !important; /* Remove harsh borders */
+    --border-radius: 8px !important;
+    --border-radius-md: 12px !important;
+    --border-radius-lg: 16px !important;
+    --shadow-base: 0 4px 30px rgba(25, 28, 30, 0.04) !important; /* Soft ambient shadow */
+    --shadow-sm: 0 2px 10px rgba(25, 28, 30, 0.03) !important;
+    
+    /* Inputs */
+    --control-bg: #f2f4f6 !important;
+    --control-bg-on-gray: #ffffff !important;
+    --btn-height: 36px !important;
+}
+
+/* Global Typography & Background */
+body {
+    background-color: var(--body-bg) !important;
+    font-family: var(--font-stack) !important;
+    color: var(--text-color) !important;
+}
+
+/* Navbar Modernization */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.03) !important;
+    border-bottom: none !important;
+    padding: 0.5rem 1rem !important;
+}
+
+/* Sidebar Overrides */
+.layout-side-section {
+    background-color: var(--card-bg) !important;
+    border-right: none !important;
+    box-shadow: var(--shadow-base) !important;
+    border-radius: var(--border-radius-md) !important;
+    margin: 10px !important;
+    padding: 15px !important;
+}
+
+/* Cards & Dashboards */
+.widget-group, .widget, .dashboard-widget {
+    background-color: var(--card-bg) !important;
+    border: none !important;
+    border-radius: var(--border-radius-md) !important;
+    box-shadow: var(--shadow-base) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget:hover, .dashboard-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(25, 28, 30, 0.08) !important;
+}
+
+/* Form Layouts (DocTypes) */
+.form-layout {
+    background-color: var(--card-bg) !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: var(--shadow-base) !important;
+    border: none !important;
+    padding: 20px !important;
+    margin-top: 15px !important;
+}
+
+/* Inputs & Controls */
+.frappe-control .control-label, .control-label {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    color: #4b5563 !important; /* Slate 600 */
+    text-transform: capitalize !important;
+    margin-bottom: 6px !important;
+    letter-spacing: 0.02em !important;
+}
+
+.form-control, .input-with-feedback, .awesomplete > input {
+    background-color: #f8fafc !important; /* Slate 50 */
+    border: 1px solid #e2e8f0 !important; /* Slate 200 */
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+    font-size: 0.9rem !important;
+    color: #0f172a !important; /* Slate 900 */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-height: 40px !important;
+}
+
+.form-control:hover, .input-with-feedback:hover, .awesomplete > input:hover {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+}
+
+.form-control:focus, .input-with-feedback:focus, .form-control:focus-within, .awesomplete > input:focus {
+    background-color: #ffffff !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15) !important;
+    outline: none !important;
+}
+
+/* Data Table / List inputs */
+.grid-row .form-control {
+    min-height: 32px !important;
+    padding: 6px 10px !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--primary-color) 100%) !important;
+    border: none !important;
+    border-radius: 9999px !important; /* Pill shape for primary CTAs */
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3) !important;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+    transform: translateY(-1px);
+}
+
+.btn-default, .btn-secondary {
+    background-color: transparent !important;
+    border: 1px solid #c7c4d8 !important;
+    border-radius: 9999px !important;
+    color: var(--text-color) !important;
+}
+
+.btn-default:hover {
+    background-color: rgba(79, 70, 229, 0.05) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+/* Tables (List View & Child Tables) */
+.grid-body, .frappe-list {
+    background-color: var(--card-bg) !important;
+    border: none !important;
+    border-radius: var(--border-radius-md) !important;
+    box-shadow: var(--shadow-base) !important;
+    overflow: hidden !important;
+}
+
+.grid-heading-row, .list-row-head {
+    background-color: #f2f4f6 !important;
+    border-bottom: none !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05rem !important;
+    font-size: 0.8rem !important;
+}
+
+.grid-row, .list-row {
+    border-bottom: 1px solid #f2f4f6 !important;
+    transition: background-color 0.2s ease;
+}
+
+.grid-row:hover, .list-row:hover {
+    background-color: #fcfcfd !important;
+}
+
+/* Standardize Headings */
+h1, h2, h3, h4, h5, h6, .page-title h1 {
+    font-family: "Manrope", var(--font-stack) !important;
+    font-weight: 700 !important;
+    color: var(--heading-text-color) !important;
+}
+
+/* Badges / Status Indicators */
+.indicator-pill {
+    border-radius: var(--border-radius) !important;
+    font-weight: 600 !important;
+    padding: 4px 10px !important;
+}
+
+/* Sidebar Item Padding Adjustment */
+.desk-sidebar .standard-sidebar-section, 
+.sidebar-item-container,
+.desk-sidebar-item {
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+}
