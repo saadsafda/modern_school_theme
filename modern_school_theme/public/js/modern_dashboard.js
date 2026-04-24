@@ -279,15 +279,36 @@ frappe.provide("modern_school_theme");
         $body.html(h);
 
         // Card clicks
+        const singles = [
+            "Education Settings", "Student Attendance Tool", "Assessment Result Tool",
+            "Course Scheduling Tool", "Program Enrollment Tool", "Student Group Creation Tool",
+            "Student Report Generation Tool"
+        ];
         $body.find(".mst-card").on("click", function() {
-            frappe.set_route("List", $(this).data("dt"));
+            const dt = $(this).data("dt");
+            if (singles.includes(dt)) {
+                frappe.set_route("Form", dt);
+            } else {
+                frappe.set_route("List", dt);
+            }
         });
 
-        // Load counts
+        // Load counts (skip Single DocTypes & Tools — they don't have their own table)
+        const skip_count = [
+            "Education Settings", "Student Attendance Tool", "Assessment Result Tool",
+            "Course Scheduling Tool", "Program Enrollment Tool", "Student Group Creation Tool",
+            "Student Report Generation Tool"
+        ];
         (group.items||[]).forEach(item => {
+            if (skip_count.includes(item.dt)) {
+                $(`.mst-cnt[data-cdt="${item.dt}"]`).text("Settings");
+                return;
+            }
             frappe.xcall("frappe.client.get_count",{doctype:item.dt}).then(c => {
                 $(`.mst-cnt[data-cdt="${item.dt}"]`).text((c||0) + " records");
-            }).catch(()=>{});
+            }).catch(()=> {
+                $(`.mst-cnt[data-cdt="${item.dt}"]`).text("—");
+            });
         });
     }
 
